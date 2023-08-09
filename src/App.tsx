@@ -1,3 +1,10 @@
+import { useState } from "react";
+
+import { Person } from "./models/person";
+
+import FriendsList from "./components/FriendsList";
+
+
 const initialFriends = [
   {
     id: 118836,
@@ -20,7 +27,15 @@ const initialFriends = [
 ];
 
 function App() {
-  return <></>;
+  const [friends, setFriends] = useState<Person[]>(initialFriends);
+
+  return (
+    <div className="app">
+      <div className="sidebar">
+        <FriendsList friends={friends} />
+      </div>
+    </div>
+  );
 }
 
 export default App;
