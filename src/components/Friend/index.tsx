@@ -1,4 +1,5 @@
 import { Person } from "../../models/person";
+import Button from "../shared/Button";
 
 const Friend = ({ name, image, balance }: Person) => {
   return (
@@ -18,7 +19,7 @@ const Friend = ({ name, image, balance }: Person) => {
       )}
       {balance === 0 && <p>You and {name} are even</p>}
 
-      <button className="button">Select</button>
+      <Button>Select</Button>
     </li>
   );
 };
