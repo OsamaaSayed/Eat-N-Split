@@ -5,9 +5,13 @@ import Button from "../shared/Button";
 
 type FormSplitBillProps = {
   selectedFriend: Person;
+  handleSplitBill: (value: number) => void;
 };
 
-const FormSplitBill = ({ selectedFriend }: FormSplitBillProps) => {
+const FormSplitBill = ({
+  selectedFriend,
+  handleSplitBill,
+}: FormSplitBillProps) => {
   const [bill, setBill] = useState<string | number>("");
   const [paidByUser, setPaidByUser] = useState<string | number>("");
   const [whoIsPaying, setWhoIsPaying] = useState("user");
@@ -17,8 +21,16 @@ const FormSplitBill = ({ selectedFriend }: FormSplitBillProps) => {
       ? bill - paidByUser
       : "";
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!bill || !paidByUser) return;
+
+    handleSplitBill(whoIsPaying === "user" ? +paidByFriend : -paidByUser);
+  };
+
   return (
-    <form className="form-split-bill">
+    <form className="form-split-bill" onSubmit={handleSubmit}>
       <h2>Split a bill with {selectedFriend.name}</h2>
 
       <label htmlFor="bill-value">💰 Bill value</label>
