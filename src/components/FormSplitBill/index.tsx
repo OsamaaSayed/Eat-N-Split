@@ -1,9 +1,15 @@
+import { Person } from "../../models/person";
+
 import Button from "../shared/Button";
 
-const FormSplitBill = () => {
+type FormSplitBillProps = {
+  selectedFriend: Person;
+};
+
+const FormSplitBill = ({ selectedFriend }: FormSplitBillProps) => {
   return (
     <form className="form-split-bill">
-      <h2>Split a bill with X</h2>
+      <h2>Split a bill with {selectedFriend.name}</h2>
 
       <label htmlFor="bill-value">💰 Bill value</label>
       <input id="bill-value" type="text" />
@@ -11,13 +17,13 @@ const FormSplitBill = () => {
       <label htmlFor="your-expense">🧍 Your expense</label>
       <input id="your-expense" type="text" />
 
-      <label htmlFor="friend-expense">👬 X's expense</label>
+      <label htmlFor="friend-expense">👬 {selectedFriend.name}'s expense</label>
       <input id="friend-expense" type="text" disabled />
 
       <label htmlFor="person-bill">🤑 Who is paying the bill?</label>
       <select name="bill" id="person-bill">
         <option value="user">You</option>
-        <option value="X">X</option>
+        <option value="X">{selectedFriend.name}</option>
       </select>
 
       <Button>Split bill</Button>

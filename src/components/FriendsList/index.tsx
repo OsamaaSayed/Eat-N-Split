@@ -4,13 +4,24 @@ import Friend from "../Friend";
 
 type FriendsListProps = {
   friends: Person[];
+  selectedFriend: Person | null;
+  handleFriendSelection: (friend: Person) => void;
 };
 
-const FriendsList = ({ friends }: FriendsListProps) => {
+const FriendsList = ({
+  friends,
+  handleFriendSelection,
+  selectedFriend,
+}: FriendsListProps) => {
   return (
     <ul>
       {friends.map((friend) => (
-        <Friend key={friend.id} {...friend} />
+        <Friend
+          key={friend.id}
+          friend={friend}
+          selectedFriend={selectedFriend}
+          handleFriendSelection={handleFriendSelection}
+        />
       ))}
     </ul>
   );
